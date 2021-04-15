@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title%}
+<title>Actualizar Paquete </title>
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="container-fluid">
+        <h1 class="mt-4">Tablero</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="/">Tablero</a></li>
+            <li class="breadcrumb-item"><a href="/products/">Paquetes</a></li>
+            <li class="breadcrumb-item active">Actualizar Paquete</li>
+        </ol>
+        <div class="card mb-4">
+
+            <div class="card-header">Actualizar Paquete</div>
+            <div class="card-body">
+                <form action="/update-product/{{product.product_id}}" method="POST" id="product_form">
+                    <label for="product_name" class="col-form-label">Nombre de Paquete</label>
+                    <input type="text" name="product_name" id="product_name" value="{{product.product_id}}">
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
