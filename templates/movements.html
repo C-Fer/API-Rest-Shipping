@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Envio de Paquetes</title>
+{% endblock %}
+
+
+{% block content %}
+<main>
+    <div class="container-fluid">
+        <h1 class="mt-4">Tablero</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="/">Tablero</a></li>
+            <li class="breadcrumb-item active">Movimientos</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-header">Movimientos</div>
+            <div class="card-body">
+                <div class="card mb-4">
+                    <div class="card-header">Nuevo Movimiento</div>
+                    <div class="card-body">
+                        <form action="/movements/" method="POST" id="movements_from">
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="productId">Nombre de Producto</label>
+                                        <select id="productId" name="productId" class="form-control">
+                                            <option selected value="">Choose...</option>
+                                            {% if products|length > 0 %}
+                                            {% for product in products%}
+                                            <!-- <option value="{{product.product_id}}">{{product.product_name}}</option> -->
+                                            <option value="{{product.product_id}}">{{product.product_id}}</option>
+                                            {% endfor %}
+                                            {% endif %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="qty">Costo</label>
+                                        <input class="form-control" name="qty" id="qty" type="number" placeholder="Ingrese Costo" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <label for="fromLocation" class="col-form-label">De</label>
+                                    <select class="form-control" name="fromLocation" id="fromLocation">
+                                        <option value="Local">Local</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="toLocation">Para</label>
+                                    <select id="toLocation" name="toLocation" class="form-control">
+                                        <option selected value="">Elegir...</option>
+                                        {% if locations|length > 0 %}
+                                        {% for location in locations%}
+                                        <option value="{{location.location_id}}">{{location.location_id}}</option>
+                                        {% endfor %}
+                                        {% endif %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group mt-4 mb-0">
+                                <input type="submit" class="btn btn-primary btn-block" value="Añadir Movimiento" class="btn btn-primary">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table mr-1"></i>
+                    Tabla de Movimientos
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        {% if movements|length < 1 %}
+                        <h4>There are no Movements, add one above</h4>
+                        {% else %}
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre de Producto</th>
+                                    <th>De</th>
+                                    <th>Para</th>
+                                    <th>Precio</th>
+                                    <th>Costo</th>
+                                    <th>Tiempo</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre de Producto</th>
+                                    <th>De</th>
+                                    <th>Para</th>
+                                    <th>Precio</th>
+                                    <th>Costo</th>
+                                    <th>Tiempo</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                {% for movement in movements%}
+                                <tr>
+                                    <td>{{ movement.movement_id }}</td>
+                                    <td>{{ movement.product_id }}</td>
+                                    <td>{{ movement.from_location }}</td>
+                                    <td>{{ movement.to_location }}</td>
+                                    {% for product in products%}
+                                    {% if movement.product_id == product.product_id %}
+                                    <td>{{ product.price }}</td>
+                                    {% endif %}
+                                    {% endfor %}
+                                    <td>{{ movement.qty }}</td>
+                                    <td>{{ movement.movement_time }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% endif %}
+                </div>
+            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
