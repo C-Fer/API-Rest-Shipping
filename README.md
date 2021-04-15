@@ -1,6 +1,7 @@
 # App de administración de Almacenamiento
 # Taller Cliente Rest
 # Camilo Andrés Fernández Echavez - T00054759
+# Hector Diaz Hernández - T00054643
 # Universidad Tecnológica de Bolívar - 2021-1
 ## Usando: Python, Flask, SQLAlchemy 
 
