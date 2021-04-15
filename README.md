@@ -5,7 +5,7 @@
 ## Usando: Python, Flask, SQLAlchemy 
 
 ## Descripción
-Esta Web API consiste en la gestión de almacenamiento de productos.
+Esta Web API consiste en la gestión y envio de paquetes.
 
 
 ## Instalación
@@ -45,5 +45,4 @@ $ python app.py
 Podrá encontrar capturas de pantalla de cada sección de la app en la carpeta "screenshots"
 
 ## Probar app
-Puede probar esta app ingresando a la siguiente ruta: https://appalmacenamiento.herokuapp.com/
-PD: Por alguna razón no funciona el apartado de Reporte de Balance desde esta dirección, recomiendo pobrar la api en Localhost
+Puede probar esta app ingresando a la siguiente ruta: https://parcialappenvios.herokuapp.com/
